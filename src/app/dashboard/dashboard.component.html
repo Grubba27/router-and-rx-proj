@@ -15,13 +15,13 @@
 
     <mat-grid-tile [colspan]="1" [rowspan]="2">
       <mat-button-toggle (click)="editSpacings(otherService.getSpacing().value + 1)">
-        Add Row
+        Add Column
       </mat-button-toggle>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="1" [rowspan]="2">
       <mat-button-toggle (click)="editSpacings(otherService.getSpacing().value - 1)">
-        Remove Row
+        Remove Column
       </mat-button-toggle>
     </mat-grid-tile>
   </mat-grid-list>
