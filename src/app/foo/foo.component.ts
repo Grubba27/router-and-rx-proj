@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {Route, Router, RouterModule, Routes} from "@angular/router";
+import {Router, RouterModule, Routes} from "@angular/router";
 import {OtherServiceService} from "../dashboard/services/other-service.service";
 
 @Component({
@@ -15,6 +15,11 @@ import {OtherServiceService} from "../dashboard/services/other-service.service";
 })
 export class FooComponent implements OnInit {
 
+  nested: Routes = [{
+    path: ':n',
+    component: FooComponent,
+    children: []
+  }];
 
   constructor(
     private router: Router,
@@ -29,31 +34,30 @@ export class FooComponent implements OnInit {
   async addNested(): Promise<void> {
     this.otherService.setData(this.otherService.getData().value + 1);
     const times = this.otherService.getDataAsInArray();
-    const nested: Routes = [{
-      path: ':n',
-      component: FooComponent,
-      children: []
-    }];
+
     const handleArrayDepth = (nested: Routes) => {
-      nested?.forEach(({children, path, component}) => {
-        if (children?.length) {
-          handleArrayDepth(children);
+      return nested.map((obj) => {
+        if (obj.children !== undefined && obj.children.length > 0) {
+          handleArrayDepth(obj.children);
         } else {
-          children?.push({
+          obj.children = [];
+          obj.children.push({
             path: ':n',
             component: FooComponent,
             children: []
           });
         }
+
+        return obj;
       });
     };
 
-    handleArrayDepth(nested);
-    console.log(nested);
+    console.log(this.nested, times);
     this.router.resetConfig([{
       path: 'home',
       component: FooComponent,
-      children: nested
+      children: handleArrayDepth(this.nested)
+
     }, ...this.router.config]);
 
     await this.router.navigate(['/home', ...this.otherService.getDataAsInArray()]);
