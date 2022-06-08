@@ -1,0 +1,41 @@
+<main>
+
+  <mat-grid-list cols="2" rowHeight="50px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <mat-button-toggle (click)="editTabs(otherService.getData().value + 1)">
+        Add tab
+      </mat-button-toggle>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <mat-button-toggle (click)="editTabs(otherService.getData().value - 1)">
+        Remove tab
+      </mat-button-toggle>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <mat-button-toggle (click)="editSpacings(otherService.getSpacing().value + 1)">
+        Add Row
+      </mat-button-toggle>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <mat-button-toggle (click)="editSpacings(otherService.getSpacing().value - 1)">
+        Remove Row
+      </mat-button-toggle>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="12" rowHeight="80px">
+    <mat-grid-tile
+      *ngFor="let row of otherService.getDataAsInArray()"
+      [colspan]="this.otherService.getSpacing().value"
+      [rowspan]="row"
+      style="border: 1px solid black;">
+      <router-outlet></router-outlet>
+    </mat-grid-tile>
+  </mat-grid-list>
+</main>
+
+
+
+
