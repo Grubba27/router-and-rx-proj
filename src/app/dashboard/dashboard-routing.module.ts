@@ -6,6 +6,11 @@ import {FooComponent} from "../foo/foo.component";
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: "full",
+    redirectTo: '/24/4'
+  },
+  {
     path: ':tabs/:spacing',
     component: DashboardComponent,
     children: [

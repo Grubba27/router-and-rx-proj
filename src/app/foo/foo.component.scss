@@ -1,3 +1,6 @@
-main {
-  overflow-x: hidden;
+div {
+  // align div in center using grid
+  display: grid;
+  place-items: center;
+
 }
