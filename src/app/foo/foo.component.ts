@@ -44,7 +44,11 @@ export class FooComponent implements OnInit {
           obj.children.push({
             path: ':n',
             component: FooComponent,
-            children: []
+            children: [{
+              path: ':n',
+              component: FooComponent,
+              children: []
+            }]
           });
         }
 
