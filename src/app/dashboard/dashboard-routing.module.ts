@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: "full",
-    redirectTo: '/24/4'
+    redirectTo: '/dashboard/24/4'
   },
   {
     path: ':tabs/:spacing',
