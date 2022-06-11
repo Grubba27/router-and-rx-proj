@@ -54,8 +54,7 @@ export class FooComponent {
     this.router.resetConfig([{
       path: 'home',
       component: FooComponent,
-      children: handleArrayDepth(this.nested)
-
+      children: handleArrayDepth(this.nested) // recursive func que aumenta a profundidade do array
     }, ...this.router.config]);
 
     await this.router.navigate(['/home', ...this.otherService.getDataAsInArray()]);

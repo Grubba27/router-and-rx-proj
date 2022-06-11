@@ -16,26 +16,21 @@ export class FakeCallsService {
   getSomeData(
     tabNumber: number
   ): Observable<Maybe<Data, CustomErr>> {
-    // observable that waits some time then emits some data
     return timer(1000)
       .pipe(
         map(() => {
-
           const random = FakeCallsService.getRandomNumber(tabNumber)
-          console.log(random, tabNumber);
           if (tabNumber <= random) {
             return {
               status: StatusNames.ERROR,
               data: 'Deu ruim :('
             };
           }
-
           return {
             status: StatusNames.SUCCESS,
             data: 'Deu boa :)'
           };
-
-        }))
+        }));
   }
 }
 
