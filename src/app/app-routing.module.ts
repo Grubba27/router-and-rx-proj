@@ -14,7 +14,6 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    canActivate: [IsEvenGuard],
     component: FooComponent,
   },
   {
