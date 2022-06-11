@@ -13,7 +13,7 @@ import {OtherServiceService} from "../dashboard/services/other-service.service";
     RouterModule,
   ]
 })
-export class FooComponent implements OnInit {
+export class FooComponent {
 
   nested: Routes = [{
     path: ':n',
@@ -26,10 +26,6 @@ export class FooComponent implements OnInit {
     private otherService: OtherServiceService
   ) {
   }
-
-  ngOnInit(): void {
-  }
-
 
   async addNested(): Promise<void> {
     this.otherService.setData(this.otherService.getData().value + 1);
@@ -55,8 +51,6 @@ export class FooComponent implements OnInit {
         return obj;
       });
     };
-
-    console.log(this.nested, times);
     this.router.resetConfig([{
       path: 'home',
       component: FooComponent,
