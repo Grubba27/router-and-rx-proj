@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {Router, RouterModule, Routes} from "@angular/router";
 import {OtherServiceService} from "../dashboard/services/other-service.service";
@@ -23,14 +23,13 @@ export class FooComponent {
 
   constructor(
     private router: Router,
-    private otherService: OtherServiceService
+    private otherService: OtherServiceService,
   ) {
   }
 
   async addNested(): Promise<void> {
     this.otherService.setData(this.otherService.getData().value + 1);
     const times = this.otherService.getDataAsInArray();
-
     const handleArrayDepth = (nested: Routes) => {
       return nested.map((obj) => {
         if (obj.children !== undefined && obj.children.length > 0) {
